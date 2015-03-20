@@ -4,10 +4,13 @@ import com.tess.entities.Order;
 import com.tess.repositories.OrderRepository;
 import java.util.Date;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 
 public abstract class SimpleOrderService implements OrderService {
 
+    private final static Logger logger = Logger.getLogger(SimpleOrderService.class);
+    
     private final OrderRepository orderRepository;
     
     
@@ -42,5 +45,13 @@ public abstract class SimpleOrderService implements OrderService {
     }
     
     public abstract Order createNewOrder();
+    
+    public void init() {
+        logger.info("Simple order service created at " + new Date());
+    }
+    
+    public void destroy() {
+        logger.info("Simple order service destroyed at " + new Date());
+    }
     
 }

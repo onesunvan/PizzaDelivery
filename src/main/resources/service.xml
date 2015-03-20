@@ -8,12 +8,12 @@
 ">
     <bean id="newOrder" scope="prototype" class="com.tess.entities.Order"/>
     
-    <bean id="orderService" class="com.tess.services.SimpleOrderService">
+    <bean id="orderService" class="com.tess.services.SimpleOrderService" init-method="init" destroy-method="destroy">
         <constructor-arg ref="orderRepository"/>
         <lookup-method name="createNewOrder" bean="newOrder"/>
     </bean>
     
-    <bean id="pizzaService" class="com.tess.services.SimplePizzaService">
+    <bean id="pizzaService" class="com.tess.services.SimplePizzaService" init-method="init" destroy-method="destroy">
         <constructor-arg ref="pizzaRepository"/>
     </bean>
     

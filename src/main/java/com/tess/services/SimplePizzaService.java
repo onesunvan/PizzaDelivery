@@ -3,11 +3,15 @@ package com.tess.services;
 import com.tess.entities.Pizza;
 import com.tess.entities.PizzaType;
 import com.tess.repositories.PizzaRepository;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 
 public class SimplePizzaService implements PizzaService {
+    
+    private final static Logger logger = Logger.getLogger(SimpleOrderService.class);
     
     private final PizzaRepository pizzaRepository;
 
@@ -30,6 +34,14 @@ public class SimplePizzaService implements PizzaService {
             }
         }
         return resultPizzaList;
+    }
+    
+    public void init() {
+        logger.info("Simple order service created at " + new Date());
+    }
+    
+    public void destroy() {
+        logger.info("Simple order service destroyed at " + new Date());
     }
     
 }
