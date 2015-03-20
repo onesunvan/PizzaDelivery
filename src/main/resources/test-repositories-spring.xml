@@ -8,14 +8,7 @@
 ">
     
 
-    <bean id="newOrder" scope="prototype" class="com.tess.entities.Order"/>
-    
     <bean id="orderRepository" class="com.tess.repositories.SimpleOrderRepository"/>
-    
-    <bean id="orderService" class="com.tess.services.SimpleOrderService">
-        <constructor-arg ref="orderRepository"/>
-        <lookup-method name="createNewOrder" bean="newOrder"/>
-    </bean>
     
     <bean id="pizzaRepository" class="com.tess.repositories.SimplePizzaRepository">
         <property name="pizzas">
@@ -43,7 +36,5 @@
             </list>
         </property>
     </bean>
-    <bean id="pizzaService" class="com.tess.services.SimplePizzaService">
-        <constructor-arg ref="pizzaRepository"/>
-    </bean>
+    
 </beans>

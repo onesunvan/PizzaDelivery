@@ -20,8 +20,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
     public static void main(String[] args) {
-        ApplicationContext appContext = new ClassPathXmlApplicationContext("test-repositories-spring.xml");
+        ApplicationContext repositoriesContext = new ClassPathXmlApplicationContext("test-repositories-spring.xml");
         
+        ApplicationContext appContext = 
+                new ClassPathXmlApplicationContext(new String[] {"service.xml"}, repositoriesContext);
         
         PizzaService pizzaService = appContext.getBean("pizzaService", PizzaService.class);
         
