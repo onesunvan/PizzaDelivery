@@ -1,16 +1,16 @@
 package com.tess.entities;
 
+import com.tess.annotations.OrderAnno;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 /**
  *
  * @author ivan
  */
-@Component
+@OrderAnno
 @Scope(value = "prototype")
 public class Order {
     private Long id;
