@@ -4,8 +4,9 @@ import com.tess.entities.Order;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class SimpleOrderRepository implements OrderRepository {
     
     private Long lastId = 0L;

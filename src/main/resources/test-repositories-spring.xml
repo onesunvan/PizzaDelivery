@@ -8,7 +8,7 @@
 ">
     
 
-    <bean id="orderRepository" class="com.tess.repositories.SimpleOrderRepository"/>
+    <!--<bean id="orderRepository" class="com.tess.repositories.SimpleOrderRepository"/>-->
     
     <bean id="pizzaRepository" class="com.tess.repositories.SimplePizzaRepository">
         <property name="pizzas">

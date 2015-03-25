@@ -5,6 +5,7 @@ import com.tess.repositories.OrderRepository;
 import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 public abstract class SimpleOrderService implements OrderService {
@@ -13,7 +14,7 @@ public abstract class SimpleOrderService implements OrderService {
     
     private final OrderRepository orderRepository;
     
-    
+    @Autowired
     public SimpleOrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }

@@ -7,14 +7,17 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service("pizzaService")
 public class SimplePizzaService implements PizzaService {
     
     private final static Logger logger = Logger.getLogger(SimpleOrderService.class);
     
     private final PizzaRepository pizzaRepository;
 
+    @Autowired
     public SimplePizzaService(PizzaRepository pizzaRepository) {
         this.pizzaRepository = pizzaRepository;
     }
