@@ -4,6 +4,13 @@ import com.tess.annotations.OrderAnno;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.springframework.context.annotation.Scope;
 
 /**
@@ -12,13 +19,19 @@ import org.springframework.context.annotation.Scope;
  */
 @OrderAnno
 @Scope(value = "prototype")
+//@Entity
+//@Table(name = "Orders")
 public class Order {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+//    @Temporal(TemporalType.DATE)
     private Date date;
     
     private String name;
     
+//    @
     private Set<Pizza> pizzas = new LinkedHashSet<>();
     
     private Double price = 0.;
