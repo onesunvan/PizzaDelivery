@@ -14,7 +14,7 @@
         <context:exclude-filter type="regex" expression="com\.tess\.repositories\..*"/>
     </context:component-scan> 
     
-    <bean id="orderService" class="com.tess.services.SimpleOrderService" init-method="init" destroy-method="destroy">
+    <bean id="orderService" class="com.tess.services.simple.SimpleOrderService" init-method="init" destroy-method="destroy">
         <lookup-method name="createNewOrder" bean="order"/>
     </bean>
     

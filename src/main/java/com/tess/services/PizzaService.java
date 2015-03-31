@@ -15,4 +15,5 @@ public interface PizzaService {
     
     List<Pizza> getPizzasByType(PizzaType pizzaType);
     
+    void savePizza(Pizza pizza);
 }

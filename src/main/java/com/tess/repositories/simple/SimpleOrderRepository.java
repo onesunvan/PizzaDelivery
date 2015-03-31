@@ -1,6 +1,7 @@
-package com.tess.repositories;
+package com.tess.repositories.simple;
 
 import com.tess.entities.Order;
+import com.tess.repositories.OrderRepository;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;

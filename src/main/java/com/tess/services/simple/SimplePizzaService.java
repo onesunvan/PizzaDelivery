@@ -1,10 +1,10 @@
-package com.tess.services;
+package com.tess.services.simple;
 
 import com.tess.entities.Pizza;
 import com.tess.entities.PizzaType;
 import com.tess.repositories.PizzaRepository;
+import com.tess.services.PizzaService;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,7 @@ public class SimplePizzaService implements PizzaService {
 
     @Override
     public List<Pizza> getPizzasByType(PizzaType pizzaType) {
-        List<Pizza> resultPizzaList = new LinkedList<>();
-        List<Pizza> allPizzas = pizzaRepository.readAll();
-        for (Pizza pizza : allPizzas) {
-            if (pizza.getType() == pizzaType) {
-                resultPizzaList.add(pizza);
-            }
-        }
-        return resultPizzaList;
+        return pizzaRepository.getPizzasByType(pizzaType);
     }
     
     public void init() {
@@ -45,6 +38,11 @@ public class SimplePizzaService implements PizzaService {
     
     public void destroy() {
         logger.info("Simple order service destroyed at " + new Date());
+    }
+
+    @Override
+    public void savePizza(Pizza pizza) {
+        pizzaRepository.save(pizza);
     }
     
 }

@@ -2,14 +2,8 @@ package com.tess.app;
 
 import com.tess.entities.Order;
 import com.tess.entities.Pizza;
-import com.tess.repositories.OrderRepository;
-import com.tess.repositories.PizzaRepository;
-import com.tess.repositories.SimpleOrderRepository;
-import com.tess.repositories.SimplePizzaRepository;
 import com.tess.services.OrderService;
 import com.tess.services.PizzaService;
-import com.tess.services.SimpleOrderService;
-import com.tess.services.SimplePizzaService;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.context.ApplicationContext;

@@ -1,7 +1,8 @@
-package com.tess.services;
+package com.tess.services.simple;
 
 import com.tess.entities.Order;
 import com.tess.repositories.OrderRepository;
+import com.tess.services.OrderService;
 import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
