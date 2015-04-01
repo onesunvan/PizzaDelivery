@@ -8,10 +8,8 @@ import java.util.List;
  *
  * @author ivan
  */
-public interface PizzaRepository {
-    List<Pizza> readAll();
+public interface PizzaRepository extends Repository<Pizza> {
     
     List<Pizza> getPizzasByType(PizzaType type);
     
-    Long save(Pizza pizza);
 }

@@ -1,6 +1,6 @@
 package com.tess.services.simple;
 
-import com.tess.entities.Order;
+import com.tess.entities.OrderE;
 import com.tess.repositories.OrderRepository;
 import com.tess.services.OrderService;
 import java.util.Date;
@@ -22,31 +22,30 @@ public abstract class SimpleOrderService implements OrderService {
     
     
     @Override
-    public List<Order> getAllOrders() {
+    public List<OrderE> getAllOrders() {
         return orderRepository.readAll();
     }
 
     @Override
-    public Order getOrderById(Long id) {
+    public OrderE getOrderById(Long id) {
         return orderRepository.read(id);
     }
 
     @Override
-    public Order createOrder() {
-        Order order = createNewOrder();
-        order.setId(orderRepository.newId());
+    public OrderE createOrder() {
+        OrderE order = createNewOrder();
         order.setDate(new Date());
-        order.setName(order.getId() + " -- " + order.getDate());
+        order.setName(" -- " + order.getDate());
         return order;
         
     }
 
     @Override
-    public void placeOrder(Order order) {
+    public void placeOrder(OrderE order) {
         orderRepository.save(order);
     }
     
-    public abstract Order createNewOrder();
+    public abstract OrderE createNewOrder();
     
     public void init() {
         logger.info("Simple order service created at " + new Date());

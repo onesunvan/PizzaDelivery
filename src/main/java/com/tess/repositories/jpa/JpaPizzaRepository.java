@@ -4,32 +4,39 @@ import com.tess.entities.Pizza;
 import com.tess.entities.PizzaType;
 import com.tess.repositories.PizzaRepository;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository("pizzaRepository")
-public class JPAPizzaRepository implements PizzaRepository {
+public class JpaPizzaRepository extends JpaEntityRepository<Pizza>
+    implements PizzaRepository {
 
-    @PersistenceContext
-    private EntityManager em;
-    
-    @Override
-    public List<Pizza> readAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public JpaPizzaRepository() {
+        super(Pizza.class);
     }
 
+    @Transactional
+    @Override
+    public List<Pizza> readAll() {
+        return readAll("Pizza.findAll");
+    }
+
+    @Transactional
     @Override
     public List<Pizza> getPizzasByType(PizzaType type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TypedQuery<Pizza> query = em.createNamedQuery("Pizza.findAllByType", Pizza.class);
+        List<Pizza> pizzas = query.setParameter("type", type).getResultList();
+        return pizzas;
     }
     
     @Transactional
     @Override
     public Long save(Pizza pizza) {
-        em.persist(pizza);
+        saveEntity(pizza);
         return pizza.getId();
     }
+    
+    
     
 }

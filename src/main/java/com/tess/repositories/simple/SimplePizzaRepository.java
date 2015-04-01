@@ -49,5 +49,20 @@ public class SimplePizzaRepository implements PizzaRepository {
     public List<Pizza> getPizzas() {
         return pizzas;
     }
+
+    @Override
+    public Pizza read(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Pizza entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Pizza entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

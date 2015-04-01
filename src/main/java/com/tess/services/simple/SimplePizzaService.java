@@ -44,5 +44,15 @@ public class SimplePizzaService implements PizzaService {
     public void savePizza(Pizza pizza) {
         pizzaRepository.save(pizza);
     }
+
+    @Override
+    public void updatePizza(Pizza pizza) {
+        pizzaRepository.update(pizza);
+    }
+
+    @Override
+    public Pizza getPizzaById(Long id) {
+        return pizzaRepository.read(id);
+    }
     
 }

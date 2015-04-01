@@ -9,10 +9,11 @@ import com.tess.entities.Pizza;
 import com.tess.entities.PizzaType;
 import com.tess.repositories.PizzaRepository;
 import com.tess.repositories.RepositoryTestsTemplate;
-import org.junit.After;
+import javax.transaction.Transactional;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 
 /**
  *
@@ -26,6 +27,8 @@ public class JPAPizzaRepositoryTest extends RepositoryTestsTemplate {
     public JPAPizzaRepositoryTest() {
     }
     
+    @Rollback
+    @Transactional
     @Test
     public void testSave() {
         Pizza pizza = new Pizza();
@@ -33,8 +36,8 @@ public class JPAPizzaRepositoryTest extends RepositoryTestsTemplate {
         pizza.setType(PizzaType.MEAT);
         pizza.setPrice(123.1);
         
-//         Long id = pizzaRepository.save(pizza);
-//        System.out.println(id);
+        Long id = pizzaRepository.save(pizza);
+        System.out.println(id);
 
         assertNotNull(1);
     }

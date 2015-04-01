@@ -1,17 +1,14 @@
 package com.tess.repositories;
 
-import com.tess.entities.Order;
+import com.tess.entities.Customer;
+import com.tess.entities.OrderE;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author ivan
  */
-public interface OrderRepository {
-    List<Order> readAll();
-    Order read(Long id);
-    Order createNew();
-    void save(Order order);
-
-    public Long newId();
+public interface OrderRepository extends Repository<OrderE> {
+    List<OrderE> getOrdersWithinPeriod(Customer customer, Date date1, Date date2);
 }

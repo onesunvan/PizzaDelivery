@@ -5,18 +5,26 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author ivan
  */
 @Entity
+@Table(name = "pizzas")
+@NamedQueries({
+    @NamedQuery(name = "Pizza.findAll", query = "SELECT p FROM Pizza p"),
+    @NamedQuery(name = "Pizza.findAllByType", 
+            query = "SELECT p FROM Pizza p WHERE p.type = :type")
+})
 public class Pizza implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
     
     private String name;

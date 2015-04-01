@@ -1,6 +1,6 @@
 package com.tess.services;
 
-import com.tess.entities.Order;
+import com.tess.entities.OrderE;
 import java.util.List;
 
 /**
@@ -8,8 +8,8 @@ import java.util.List;
  * @author ivan
  */
 public interface OrderService {
-    List<Order> getAllOrders();
-    Order getOrderById(Long id);
-    Order createOrder();
-    void placeOrder(Order order);
+    List<OrderE> getAllOrders();
+    OrderE getOrderById(Long id);
+    OrderE createOrder();
+    void placeOrder(OrderE order);
 }

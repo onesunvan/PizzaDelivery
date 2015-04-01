@@ -1,6 +1,7 @@
 package com.tess.repositories.simple;
 
-import com.tess.entities.Order;
+import com.tess.entities.Customer;
+import com.tess.entities.OrderE;
 import com.tess.repositories.OrderRepository;
 import java.util.Date;
 import java.util.LinkedList;
@@ -10,9 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository("orderRepository")
 public class SimpleOrderRepository implements OrderRepository {
     
-    private Long lastId = 0L;
-    
-    private final List<Order> orders = new LinkedList<>();
+    private final List<OrderE> orders = new LinkedList<>();
     
     public SimpleOrderRepository() {
         
@@ -20,13 +19,13 @@ public class SimpleOrderRepository implements OrderRepository {
     
     
     @Override
-    public List<Order> readAll() {
+    public List<OrderE> readAll() {
         return orders;
     }
 
     @Override
-    public Order read(Long id) {
-        for (Order order : orders) {
+    public OrderE read(Long id) {
+        for (OrderE order : orders) {
             if (order.getId().equals(id)) {
                 return order;
             }
@@ -35,26 +34,26 @@ public class SimpleOrderRepository implements OrderRepository {
     }
 
     @Override
-    public Order createNew() {
-        Order order = new Order();
-        order.setId(lastId++);
-        order.setDate(new Date());
-        order.setName(order.getId() + " -- " + order.getDate());
-        orders.add(order);
-        return order;
-    }
-
-    @Override
-    public void save(Order order) {
+    public Long save(OrderE order) {
         if (!orders.contains(order)) {
-            order.setId(lastId++);
             orders.add(order);
         }
+        return order.getId();
     }
 
     @Override
-    public Long newId() {
-        return ++lastId;
+    public void delete(OrderE entity) {
+        orders.remove(entity);
+    }
+
+    @Override
+    public void update(OrderE entity) {
+        
+    }
+
+    @Override
+    public List<OrderE> getOrdersWithinPeriod(Customer customer, Date date1, Date date2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
