@@ -21,6 +21,14 @@ public class JpaOrderRepository extends JpaEntityRepository<OrderE>
     }
 
     @Override
+    @Transactional
+    public OrderE read(Long id) {
+        OrderE o = super.read(id);
+        o.getPizzas().size();
+        return o;
+    }
+    
+    @Override
     public List<OrderE> readAll() {
         return readAll("Order.findAll");
     }

@@ -3,8 +3,13 @@ package com.tess.entities;
 import com.tess.annotations.OrderAnno;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -52,10 +58,17 @@ public class OrderE implements Serializable {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Set<PizzaOrder> pizzaOrders = new LinkedHashSet<>();
+//    @OneToMany(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "order_id")
+//    private Set<PizzaOrder> pizzaOrders = new LinkedHashSet<>();
 
+    @ElementCollection
+    @CollectionTable(name = "pizza_orders",
+                joinColumns = @JoinColumn(name = "order_id"))
+    @MapKeyJoinColumn(name = "pizza_id", referencedColumnName = "id")
+    @Column(name = "amount")
+    private Map<Pizza, Integer> pizzas = new HashMap<>();
+    
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -93,28 +106,28 @@ public class OrderE implements Serializable {
         this.name = name;
     }
 
-    public Set<PizzaOrder> getPizzaOrders() {
-        return pizzaOrders;
-    }
-
-    public void setPizzaOrders(Set<PizzaOrder> pizzaOrders) {
-        this.pizzaOrders = pizzaOrders;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void addPizzaOrder(PizzaOrder pizzaOrder) {
-        pizzaOrders.add(pizzaOrder);
-        price += pizzaOrder.getPizza().getPrice();
-    }
+//    public Set<PizzaOrder> getPizzaOrders() {
+//        return pizzaOrders;
+//    }
+//
+//    public void setPizzaOrders(Set<PizzaOrder> pizzaOrders) {
+//        this.pizzaOrders = pizzaOrders;
+//    }
+//
+//    public Double getPrice() {
+//        return price;
+//    }
+//
+//    public void addPizzaOrder(PizzaOrder pizzaOrder) {
+//        pizzaOrders.add(pizzaOrder);
+//        price += pizzaOrder.getPizza().getPrice();
+//    }
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", date=" + date + 
-                ", name=" + name + ", pizzaOrders=" + pizzaOrders + ", price=" + price + '}';
+        return "OrderE{" + "id=" + id + ", date=" + date + ", name=" + name + ", price=" + price + ", status=" + status + ", pizzas=" + pizzas + ", customer=" + customer + '}';
     }
+
 
     public OrderStatus getStatus() {
         return status;
@@ -130,6 +143,14 @@ public class OrderE implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Map<Pizza, Integer> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(Map<Pizza, Integer> pizzas) {
+        this.pizzas = pizzas;
     }
 
 }
