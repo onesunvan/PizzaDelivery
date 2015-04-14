@@ -12,6 +12,7 @@ import com.tess.repositories.RepositoryTestsTemplate;
 import javax.transaction.Transactional;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 
@@ -19,6 +20,7 @@ import org.springframework.test.annotation.Rollback;
  *
  * @author ivan
  */
+@Ignore
 public class JPAPizzaRepositoryTest extends RepositoryTestsTemplate {
     
     @Autowired
