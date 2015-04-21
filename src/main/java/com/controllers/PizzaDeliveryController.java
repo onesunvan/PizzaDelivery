@@ -28,7 +28,7 @@ public class PizzaDeliveryController /*implements ApplicationContextAware*/ {
         }
         return sb.toString();
     }
-
+    
 //    @Override
 //    public void setApplicationContext(ApplicationContext ac) throws BeansException {
 //        context = ac;
